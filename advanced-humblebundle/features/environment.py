@@ -1,6 +1,10 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+import time
 
 
 def before_all(context):
@@ -16,6 +20,20 @@ def before_all(context):
     
     context.driver = webdriver.Chrome(options=chrome_options)
     context.driver.implicitly_wait(10)
+
+
+def before_scenario(context, scenario):
+    """Dismiss cookie banner before each scenario"""
+    try:
+
+        time.sleep(1)
+        accept_button = WebDriverWait(context.driver, 5).until(
+            EC.element_to_be_clickable((By.ID, "onetrust-accept-btn-handler"))
+        )
+        accept_button.click()
+        time.sleep(1)
+    except:
+        pass
 
 
 def after_all(context):

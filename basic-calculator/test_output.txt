@@ -1,22 +1,91 @@
-Exception FileNotFoundError: [Errno 2] No such file or directory: '/Users/saulaguiar/school/quality/testing-with-behave-saulaguiar29/basic-calculator/features/steps'
-Traceback (most recent call last):
-  File "/opt/homebrew/bin/behave", line 7, in <module>
-    sys.exit(main())
-             ^^^^^^
-  File "/opt/homebrew/lib/python3.11/site-packages/behave/__main__.py", line 183, in main
-    return run_behave(config)
-           ^^^^^^^^^^^^^^^^^^
-  File "/opt/homebrew/lib/python3.11/site-packages/behave/__main__.py", line 127, in run_behave
-    failed = runner.run()
-             ^^^^^^^^^^^^
-  File "/opt/homebrew/lib/python3.11/site-packages/behave/runner.py", line 804, in run
-    return self.run_with_paths()
-           ^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/homebrew/lib/python3.11/site-packages/behave/runner.py", line 809, in run_with_paths
-    self.load_step_definitions()
-  File "/opt/homebrew/lib/python3.11/site-packages/behave/runner.py", line 796, in load_step_definitions
-    load_step_modules(step_paths)
-  File "/opt/homebrew/lib/python3.11/site-packages/behave/runner_util.py", line 404, in load_step_modules
-    for name in sorted(os.listdir(path)):
-                       ^^^^^^^^^^^^^^^^
-FileNotFoundError: [Errno 2] No such file or directory: '/Users/saulaguiar/school/quality/testing-with-behave-saulaguiar29/basic-calculator/features/steps'
+Feature: Basic Calculator Web Application # features/calculator.feature:1
+  As a user
+  I want to perform basic arithmetic calculations
+  So that I can compute mathematical operations easily
+  Scenario: User can access the calculator homepage                 # features/calculator.feature:6
+    Given I open the url "https://www.calculator.net/"              # ../../../../../../opt/homebrew/lib/python3.11/site-packages/behave_webdriver/steps/actions_re.py:60
+    Then I expect that element "body" does exist                    # ../../../../../../opt/homebrew/lib/python3.11/site-packages/behave_webdriver/steps/expectations.py:83
+    And I expect that element "body" contains the text "Calculator" # ../../../../../../opt/homebrew/lib/python3.11/site-packages/behave_webdriver/steps/expectations.py:121
+
+  Scenario: User can navigate to BMI calculator                                    # features/calculator.feature:11
+    Given I open the url "https://www.calculator.net/"                             # ../../../../../../opt/homebrew/lib/python3.11/site-packages/behave_webdriver/steps/actions_re.py:60
+    When I click on the element "a[href='/bmi-calculator.html']"                   # ../../../../../../opt/homebrew/lib/python3.11/site-packages/behave_webdriver/steps/actions.py:21
+    Then I expect that the url is "https://www.calculator.net/bmi-calculator.html" # ../../../../../../opt/homebrew/lib/python3.11/site-packages/behave_webdriver/steps/expectations.py:152
+    And I expect that element "h1" does exist                                      # ../../../../../../opt/homebrew/lib/python3.11/site-packages/behave_webdriver/steps/expectations.py:83
+
+  Scenario: User can navigate to percentage calculator               # features/calculator.feature:17
+    Given I open the url "https://www.calculator.net/"               # ../../../../../../opt/homebrew/lib/python3.11/site-packages/behave_webdriver/steps/actions_re.py:60
+    When I click on the element "a[href='/percent-calculator.html']" # ../../../../../../opt/homebrew/lib/python3.11/site-packages/behave_webdriver/steps/actions.py:21
+    Then I expect that element "h1" does exist                       # ../../../../../../opt/homebrew/lib/python3.11/site-packages/behave_webdriver/steps/expectations.py:83
+    And I expect that element "body" contains the text "Percentage"  # ../../../../../../opt/homebrew/lib/python3.11/site-packages/behave_webdriver/steps/expectations.py:121
+
+  Scenario: User can navigate to loan calculator                  # features/calculator.feature:23
+    Given I open the url "https://www.calculator.net/"            # ../../../../../../opt/homebrew/lib/python3.11/site-packages/behave_webdriver/steps/actions_re.py:60
+    When I click on the element "a[href='/loan-calculator.html']" # ../../../../../../opt/homebrew/lib/python3.11/site-packages/behave_webdriver/steps/actions.py:21
+    Then I expect that element "h1" does exist                    # ../../../../../../opt/homebrew/lib/python3.11/site-packages/behave_webdriver/steps/expectations.py:83
+    And I expect that element "body" contains the text "Loan"     # ../../../../../../opt/homebrew/lib/python3.11/site-packages/behave_webdriver/steps/expectations.py:121
+
+  Scenario: User can navigate to mortgage calculator                  # features/calculator.feature:29
+    Given I open the url "https://www.calculator.net/"                # ../../../../../../opt/homebrew/lib/python3.11/site-packages/behave_webdriver/steps/actions_re.py:60
+    When I click on the element "a[href='/mortgage-calculator.html']" # ../../../../../../opt/homebrew/lib/python3.11/site-packages/behave_webdriver/steps/actions.py:21
+    Then I expect that element "h1" does exist                        # ../../../../../../opt/homebrew/lib/python3.11/site-packages/behave_webdriver/steps/expectations.py:83
+    And I expect that element "body" contains the text "Mortgage"     # ../../../../../../opt/homebrew/lib/python3.11/site-packages/behave_webdriver/steps/expectations.py:121
+
+  Scenario: User can navigate to age calculator                  # features/calculator.feature:35
+    Given I open the url "https://www.calculator.net/"           # ../../../../../../opt/homebrew/lib/python3.11/site-packages/behave_webdriver/steps/actions_re.py:60
+    When I click on the element "a[href='/age-calculator.html']" # ../../../../../../opt/homebrew/lib/python3.11/site-packages/behave_webdriver/steps/actions.py:21
+    Then I expect that element "h1" does exist                   # ../../../../../../opt/homebrew/lib/python3.11/site-packages/behave_webdriver/steps/expectations.py:83
+    And I expect that element "body" contains the text "Age"     # ../../../../../../opt/homebrew/lib/python3.11/site-packages/behave_webdriver/steps/expectations.py:121
+
+  Scenario: User can navigate to date calculator                  # features/calculator.feature:41
+    Given I open the url "https://www.calculator.net/"            # ../../../../../../opt/homebrew/lib/python3.11/site-packages/behave_webdriver/steps/actions_re.py:60
+    When I click on the element "a[href='/date-calculator.html']" # ../../../../../../opt/homebrew/lib/python3.11/site-packages/behave_webdriver/steps/actions.py:21
+    Then I expect that element "h1" does exist                    # ../../../../../../opt/homebrew/lib/python3.11/site-packages/behave_webdriver/steps/expectations.py:83
+    And I expect that element "body" contains the text "Date"     # ../../../../../../opt/homebrew/lib/python3.11/site-packages/behave_webdriver/steps/expectations.py:121
+
+  Scenario: User can navigate to calorie calculator                  # features/calculator.feature:47
+    Given I open the url "https://www.calculator.net/"               # ../../../../../../opt/homebrew/lib/python3.11/site-packages/behave_webdriver/steps/actions_re.py:60
+    When I click on the element "a[href='/calorie-calculator.html']" # ../../../../../../opt/homebrew/lib/python3.11/site-packages/behave_webdriver/steps/actions.py:21
+    Then I expect that element "h1" does exist                       # ../../../../../../opt/homebrew/lib/python3.11/site-packages/behave_webdriver/steps/expectations.py:83
+    And I expect that element "body" contains the text "Calorie"     # ../../../../../../opt/homebrew/lib/python3.11/site-packages/behave_webdriver/steps/expectations.py:121
+
+  Scenario: User can navigate to BMR calculator                  # features/calculator.feature:53
+    Given I open the url "https://www.calculator.net/"           # ../../../../../../opt/homebrew/lib/python3.11/site-packages/behave_webdriver/steps/actions_re.py:60
+    When I click on the element "a[href='/bmr-calculator.html']" # ../../../../../../opt/homebrew/lib/python3.11/site-packages/behave_webdriver/steps/actions.py:21
+    Then I expect that element "h1" does exist                   # ../../../../../../opt/homebrew/lib/python3.11/site-packages/behave_webdriver/steps/expectations.py:83
+    And I expect that element "body" contains the text "BMR"     # ../../../../../../opt/homebrew/lib/python3.11/site-packages/behave_webdriver/steps/expectations.py:121
+
+  Scenario: User can navigate to body fat calculator                  # features/calculator.feature:59
+    Given I open the url "https://www.calculator.net/"                # ../../../../../../opt/homebrew/lib/python3.11/site-packages/behave_webdriver/steps/actions_re.py:60
+    When I click on the element "a[href='/body-fat-calculator.html']" # ../../../../../../opt/homebrew/lib/python3.11/site-packages/behave_webdriver/steps/actions.py:21
+    Then I expect that element "h1" does exist                        # ../../../../../../opt/homebrew/lib/python3.11/site-packages/behave_webdriver/steps/expectations.py:83
+    And I expect that element "body" contains the text "Body Fat"     # ../../../../../../opt/homebrew/lib/python3.11/site-packages/behave_webdriver/steps/expectations.py:121
+
+  Scenario: User can navigate to ideal weight calculator                  # features/calculator.feature:65
+    Given I open the url "https://www.calculator.net/"                    # ../../../../../../opt/homebrew/lib/python3.11/site-packages/behave_webdriver/steps/actions_re.py:60
+    When I click on the element "a[href='/ideal-weight-calculator.html']" # ../../../../../../opt/homebrew/lib/python3.11/site-packages/behave_webdriver/steps/actions.py:21
+    Then I expect that element "h1" does exist                            # ../../../../../../opt/homebrew/lib/python3.11/site-packages/behave_webdriver/steps/expectations.py:83
+    And I expect that element "body" contains the text "Weight"           # ../../../../../../opt/homebrew/lib/python3.11/site-packages/behave_webdriver/steps/expectations.py:121
+
+  Scenario: User can see calculator categories on homepage         # features/calculator.feature:71
+    Given I open the url "https://www.calculator.net/"             # ../../../../../../opt/homebrew/lib/python3.11/site-packages/behave_webdriver/steps/actions_re.py:60
+    Then I expect that element "body" contains the text "Math"     # ../../../../../../opt/homebrew/lib/python3.11/site-packages/behave_webdriver/steps/expectations.py:121
+    And I expect that element "body" contains the text "Financial" # ../../../../../../opt/homebrew/lib/python3.11/site-packages/behave_webdriver/steps/expectations.py:121
+    And I expect that element "body" contains the text "Fitness"   # ../../../../../../opt/homebrew/lib/python3.11/site-packages/behave_webdriver/steps/expectations.py:121
+
+  Scenario: User can navigate to pace calculator                  # features/calculator.feature:77
+    Given I open the url "https://www.calculator.net/"            # ../../../../../../opt/homebrew/lib/python3.11/site-packages/behave_webdriver/steps/actions_re.py:60
+    When I click on the element "a[href='/pace-calculator.html']" # ../../../../../../opt/homebrew/lib/python3.11/site-packages/behave_webdriver/steps/actions.py:21
+    Then I expect that element "h1" does exist                    # ../../../../../../opt/homebrew/lib/python3.11/site-packages/behave_webdriver/steps/expectations.py:83
+    And I expect that element "body" contains the text "Pace"     # ../../../../../../opt/homebrew/lib/python3.11/site-packages/behave_webdriver/steps/expectations.py:121
+
+  Scenario: User can see homepage has calculator links                         # features/calculator.feature:83
+    Given I open the url "https://www.calculator.net/"                         # ../../../../../../opt/homebrew/lib/python3.11/site-packages/behave_webdriver/steps/actions_re.py:60
+    Then I expect that element "a[href='/bmi-calculator.html']" does exist     # ../../../../../../opt/homebrew/lib/python3.11/site-packages/behave_webdriver/steps/expectations.py:83
+    And I expect that element "a[href='/loan-calculator.html']" does exist     # ../../../../../../opt/homebrew/lib/python3.11/site-packages/behave_webdriver/steps/expectations.py:83
+    And I expect that element "a[href='/mortgage-calculator.html']" does exist # ../../../../../../opt/homebrew/lib/python3.11/site-packages/behave_webdriver/steps/expectations.py:83
+
+1 feature passed, 0 failed, 0 skipped
+14 scenarios passed, 0 failed, 0 skipped
+55 steps passed, 0 failed, 0 skipped, 0 undefined
+Took 0m4.776s
