@@ -1,0 +1,22 @@
+Exception FileNotFoundError: [Errno 2] No such file or directory: '/Users/saulaguiar/school/quality/testing-with-behave-saulaguiar29/basic-calculator/features/steps'
+Traceback (most recent call last):
+  File "/opt/homebrew/bin/behave", line 7, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/opt/homebrew/lib/python3.11/site-packages/behave/__main__.py", line 183, in main
+    return run_behave(config)
+           ^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.11/site-packages/behave/__main__.py", line 127, in run_behave
+    failed = runner.run()
+             ^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.11/site-packages/behave/runner.py", line 804, in run
+    return self.run_with_paths()
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.11/site-packages/behave/runner.py", line 809, in run_with_paths
+    self.load_step_definitions()
+  File "/opt/homebrew/lib/python3.11/site-packages/behave/runner.py", line 796, in load_step_definitions
+    load_step_modules(step_paths)
+  File "/opt/homebrew/lib/python3.11/site-packages/behave/runner_util.py", line 404, in load_step_modules
+    for name in sorted(os.listdir(path)):
+                       ^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/saulaguiar/school/quality/testing-with-behave-saulaguiar29/basic-calculator/features/steps'

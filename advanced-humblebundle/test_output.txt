@@ -1,0 +1,192 @@
+Feature: Humble Bundle E-Commerce Platform # features/humble_bundle.feature:1
+  As a potential customer
+  I want to browse and explore Humble Bundle offerings
+  To find bundles and deals that interest me
+  Background:   # features/humble_bundle.feature:6
+
+  Scenario: User can access the Humble Bundle homepage  # features/humble_bundle.feature:9
+    Given I am on the Humble Bundle homepage            # features/steps/humble_bundle_steps.py:10
+    Then I should see the Humble Bundle logo            # features/steps/humble_bundle_steps.py:211
+    And the page title should contain "Humble Bundle"   # features/steps/humble_bundle_steps.py:224
+    And I should see navigation menu options            # features/steps/humble_bundle_steps.py:232
+
+  Scenario: User can view current bundles              # features/humble_bundle.feature:14
+    Given I am on the Humble Bundle homepage           # features/steps/humble_bundle_steps.py:10
+    When I navigate to the bundles page                # features/steps/humble_bundle_steps.py:18
+    Then I should see available bundles displayed      # features/steps/humble_bundle_steps.py:239
+    And each bundle should show a title                # features/steps/humble_bundle_steps.py:252
+    And each bundle should display pricing information # features/steps/humble_bundle_steps.py:259
+
+  Scenario: User can navigate to games section  # features/humble_bundle.feature:20
+    Given I am on the Humble Bundle homepage    # features/steps/humble_bundle_steps.py:10
+    When I click on the games navigation link   # features/steps/humble_bundle_steps.py:32
+    Then I should be on the games page          # features/steps/humble_bundle_steps.py:267
+      Assertion Failed: Not on games page
+
+    And I should see game listings              # None
+
+  Scenario: User can navigate to books section  # features/humble_bundle.feature:25
+    Given I am on the Humble Bundle homepage    # features/steps/humble_bundle_steps.py:10
+    When I click on the books navigation link   # features/steps/humble_bundle_steps.py:45
+    Then I should be on the books page          # features/steps/humble_bundle_steps.py:280
+    And I should see book bundle offerings      # features/steps/humble_bundle_steps.py:286
+
+  Scenario: User can navigate to software section  # features/humble_bundle.feature:30
+    Given I am on the Humble Bundle homepage       # features/steps/humble_bundle_steps.py:10
+    When I click on the software navigation link   # features/steps/humble_bundle_steps.py:58
+    Then I should be on the software page          # features/steps/humble_bundle_steps.py:293
+    And I should see software bundle listings      # features/steps/humble_bundle_steps.py:299
+
+  Scenario: User can search for specific content        # features/humble_bundle.feature:35
+    Given I am on the Humble Bundle homepage            # features/steps/humble_bundle_steps.py:10
+    When I search for "rpg"                             # features/steps/humble_bundle_steps.py:71
+    Then I should see search results                    # features/steps/humble_bundle_steps.py:306
+    And the results should be related to my search term # features/steps/humble_bundle_steps.py:314
+
+  Scenario: User can view bundle details      # features/humble_bundle.feature:40
+    Given I am on the Humble Bundle homepage  # features/steps/humble_bundle_steps.py:10
+    When I navigate to the bundles page       # features/steps/humble_bundle_steps.py:18
+    And I click on the first available bundle # features/steps/humble_bundle_steps.py:91
+      Traceback (most recent call last):
+        File "features/steps/humble_bundle_steps.py", line 99, in step_click_first_bundle
+          first_bundle.click()
+        File "/opt/homebrew/lib/python3.11/site-packages/selenium/webdriver/remote/webelement.py", line 80, in click
+          self._execute(Command.CLICK_ELEMENT)
+        File "/opt/homebrew/lib/python3.11/site-packages/selenium/webdriver/remote/webelement.py", line 633, in _execute
+          return self._parent.execute(command, params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        File "/opt/homebrew/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 321, in execute
+          self.error_handler.check_response(response)
+        File "/opt/homebrew/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py", line 242, in check_response
+          raise exception_class(message, screen, stacktrace)
+      selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element <div class="tile-holder js-tile-holder one-third">...</div> is not clickable at point (536, 747). Other element would receive the click: <div id="onetrust-policy-text">...</div>
+        (Session info: chrome=142.0.7444.135)
+      
+      
+      During handling of the above exception, another exception occurred:
+      
+      Traceback (most recent call last):
+        File "/opt/homebrew/lib/python3.11/site-packages/behave/model.py", line 1329, in run
+          match.run(runner.context)
+        File "/opt/homebrew/lib/python3.11/site-packages/behave/matchers.py", line 98, in run
+          self.func(context, *args, **kwargs)
+        File "features/steps/humble_bundle_steps.py", line 106, in step_click_first_bundle
+          link.click()
+        File "/opt/homebrew/lib/python3.11/site-packages/selenium/webdriver/remote/webelement.py", line 80, in click
+          self._execute(Command.CLICK_ELEMENT)
+        File "/opt/homebrew/lib/python3.11/site-packages/selenium/webdriver/remote/webelement.py", line 633, in _execute
+          return self._parent.execute(command, params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        File "/opt/homebrew/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 321, in execute
+          self.error_handler.check_response(response)
+        File "/opt/homebrew/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py", line 242, in check_response
+          raise exception_class(message, screen, stacktrace)
+      selenium.common.exceptions.ElementNotInteractableException: Message: element not interactable
+        (Session info: chrome=142.0.7444.135)
+
+    Then I should see the bundle detail page  # None
+    And I should see bundle contents listed   # None
+    And I should see pricing tiers            # None
+
+  Scenario: User can see charity information        # features/humble_bundle.feature:47
+    Given I am on the Humble Bundle homepage        # features/steps/humble_bundle_steps.py:10
+    When I navigate to the bundles page             # features/steps/humble_bundle_steps.py:18
+    And I click on the first available bundle       # features/steps/humble_bundle_steps.py:91
+      Traceback (most recent call last):
+        File "features/steps/humble_bundle_steps.py", line 99, in step_click_first_bundle
+          first_bundle.click()
+        File "/opt/homebrew/lib/python3.11/site-packages/selenium/webdriver/remote/webelement.py", line 80, in click
+          self._execute(Command.CLICK_ELEMENT)
+        File "/opt/homebrew/lib/python3.11/site-packages/selenium/webdriver/remote/webelement.py", line 633, in _execute
+          return self._parent.execute(command, params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        File "/opt/homebrew/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 321, in execute
+          self.error_handler.check_response(response)
+        File "/opt/homebrew/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py", line 242, in check_response
+          raise exception_class(message, screen, stacktrace)
+      selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element <div class="tile-holder js-tile-holder one-third">...</div> is not clickable at point (536, 747). Other element would receive the click: <div id="onetrust-policy-text">...</div>
+        (Session info: chrome=142.0.7444.135)
+      
+      
+      During handling of the above exception, another exception occurred:
+      
+      Traceback (most recent call last):
+        File "/opt/homebrew/lib/python3.11/site-packages/behave/model.py", line 1329, in run
+          match.run(runner.context)
+        File "/opt/homebrew/lib/python3.11/site-packages/behave/matchers.py", line 98, in run
+          self.func(context, *args, **kwargs)
+        File "features/steps/humble_bundle_steps.py", line 106, in step_click_first_bundle
+          link.click()
+        File "/opt/homebrew/lib/python3.11/site-packages/selenium/webdriver/remote/webelement.py", line 80, in click
+          self._execute(Command.CLICK_ELEMENT)
+        File "/opt/homebrew/lib/python3.11/site-packages/selenium/webdriver/remote/webelement.py", line 633, in _execute
+          return self._parent.execute(command, params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        File "/opt/homebrew/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 321, in execute
+          self.error_handler.check_response(response)
+        File "/opt/homebrew/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py", line 242, in check_response
+          raise exception_class(message, screen, stacktrace)
+      selenium.common.exceptions.ElementNotInteractableException: Message: element not interactable
+        (Session info: chrome=142.0.7444.135)
+
+    Then I should see charity information displayed # None
+    And I should see how proceeds are distributed   # None
+
+  Scenario: User can navigate to store             # features/humble_bundle.feature:53
+    Given I am on the Humble Bundle homepage       # features/steps/humble_bundle_steps.py:10
+    When I click on the store navigation link      # features/steps/humble_bundle_steps.py:111
+    Then I should be on the store page             # features/steps/humble_bundle_steps.py:357
+    And I should see individual items for purchase # features/steps/humble_bundle_steps.py:363
+
+  Scenario: User can filter store items      # features/humble_bundle.feature:58
+    Given I am on the Humble Bundle homepage # features/steps/humble_bundle_steps.py:10
+    When I navigate to the store             # features/steps/humble_bundle_steps.py:124
+    And I apply a price filter               # features/steps/humble_bundle_steps.py:131
+    Then the displayed items should update   # features/steps/humble_bundle_steps.py:370
+    And I should see filtered results        # features/steps/humble_bundle_steps.py:377
+
+  Scenario: User can sort store items        # features/humble_bundle.feature:64
+    Given I am on the Humble Bundle homepage # features/steps/humble_bundle_steps.py:10
+    When I navigate to the store             # features/steps/humble_bundle_steps.py:124
+    And I sort items by popularity           # features/steps/humble_bundle_steps.py:144
+    Then the items should be reordered       # features/steps/humble_bundle_steps.py:384
+    And I should see the sorting applied     # features/steps/humble_bundle_steps.py:391
+
+  Scenario: User can view Humble Choice subscription  # features/humble_bundle.feature:70
+    Given I am on the Humble Bundle homepage          # features/steps/humble_bundle_steps.py:10
+    When I click on the choice navigation link        # features/steps/humble_bundle_steps.py:159
+    Then I should be on the Humble Choice page        # features/steps/humble_bundle_steps.py:398
+    And I should see subscription plan information    # features/steps/humble_bundle_steps.py:405
+    And I should see featured monthly games           # features/steps/humble_bundle_steps.py:413
+
+  Scenario: User can access help and support  # features/humble_bundle.feature:76
+    Given I am on the Humble Bundle homepage  # features/steps/humble_bundle_steps.py:10
+    When I navigate to the support section    # features/steps/humble_bundle_steps.py:172
+    Then I should see help topics             # features/steps/humble_bundle_steps.py:420
+    And I should see contact options          # features/steps/humble_bundle_steps.py:427
+    And I should see FAQ information          # features/steps/humble_bundle_steps.py:435
+
+  Scenario: User can view account signup options  # features/humble_bundle.feature:82
+    Given I am on the Humble Bundle homepage      # features/steps/humble_bundle_steps.py:10
+    When I click on the sign up button            # features/steps/humble_bundle_steps.py:179
+    Then I should see registration options        # features/steps/humble_bundle_steps.py:442
+    And I should see email signup form            # features/steps/humble_bundle_steps.py:450
+    And I should see social login options         # features/steps/humble_bundle_steps.py:457
+
+  Scenario: User can browse by category         # features/humble_bundle.feature:88
+    Given I am on the Humble Bundle homepage    # features/steps/humble_bundle_steps.py:10
+    When I select a category from the menu      # features/steps/humble_bundle_steps.py:197
+    Then I should see items in that category    # features/steps/humble_bundle_steps.py:465
+    And the category name should be displayed   # features/steps/humble_bundle_steps.py:472
+    And I should see relevant filtering options # features/steps/humble_bundle_steps.py:479
+
+
+Failing scenarios:
+  features/humble_bundle.feature:20  User can navigate to games section
+  features/humble_bundle.feature:40  User can view bundle details
+  features/humble_bundle.feature:47  User can see charity information
+
+0 features passed, 1 failed, 0 skipped
+12 scenarios passed, 3 failed, 0 skipped
+61 steps passed, 3 failed, 6 skipped, 0 undefined
+Took 2m58.039s
