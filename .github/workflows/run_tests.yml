@@ -47,10 +47,6 @@ jobs:
           python -m behave --format pretty --no-capture
         continue-on-error: false
 
-      - name: Upgrade to Selenium 4 for advanced tests
-        run: |
-          pip install --upgrade selenium
-
       - name: Run advanced-humblebundle tests
         working-directory: advanced-humblebundle
         run: |
