@@ -27,7 +27,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install behave==1.2.6 behave-webdriver selenium
+          pip install behave==1.2.6 behave-webdriver selenium==3.141.0
 
       - name: Run isitchristmas tests
         working-directory: isitchristmas
@@ -46,6 +46,10 @@ jobs:
         run: |
           python -m behave --format pretty --no-capture
         continue-on-error: false
+
+      - name: Upgrade to Selenium 4 for advanced tests
+        run: |
+          pip install --upgrade selenium
 
       - name: Run advanced-humblebundle tests
         working-directory: advanced-humblebundle
