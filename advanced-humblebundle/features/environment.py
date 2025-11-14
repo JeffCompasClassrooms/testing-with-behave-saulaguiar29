@@ -1,42 +1,21 @@
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-import time
+# features/environment.py for advanced-humblebundle
 
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 
 def before_all(context):
-    """Set up the browser before all tests"""
+    """Set up Chrome WebDriver for advanced Humble Bundle tests."""
     chrome_options = Options()
-    chrome_options.add_argument('--headless')
-    chrome_options.add_argument('--no-sandbox')
-    chrome_options.add_argument('--disable-dev-shm-usage')
-    chrome_options.add_argument('--disable-gpu')
-    chrome_options.add_argument('--window-size=1920,1080')
-    chrome_options.add_argument('--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36')
-    
-    
+    chrome_options.add_argument("--headless=new")
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.add_argument("--disable-gpu")
+    chrome_options.add_argument("--window-size=1920,1080")
+
+    # Selenium 4 will use Selenium Manager to find/download chromedriver
     context.driver = webdriver.Chrome(options=chrome_options)
-    context.driver.implicitly_wait(10)
-
-
-def before_scenario(context, scenario):
-    """Dismiss cookie banner before each scenario"""
-    try:
-
-        time.sleep(1)
-        accept_button = WebDriverWait(context.driver, 5).until(
-            EC.element_to_be_clickable((By.ID, "onetrust-accept-btn-handler"))
-        )
-        accept_button.click()
-        time.sleep(1)
-    except:
-        pass
-
 
 def after_all(context):
-    """Clean up after all tests"""
-    if hasattr(context, 'driver'):
+    """Tear down the browser after all tests."""
+    if hasattr(context, "driver") and context.driver:
         context.driver.quit()

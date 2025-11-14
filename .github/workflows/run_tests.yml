@@ -1,4 +1,4 @@
-name: Run Behave Tests
+name: Run Behave and Advanced Tests
 
 on:
   push:
@@ -7,7 +7,8 @@ on:
     branches: [main]
 
 jobs:
-  test:
+  behave-test-suites:
+    name: Behave WebDriver Suites (Selenium 3)
     runs-on: ubuntu-latest
 
     steps:
@@ -19,14 +20,16 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install Chrome
+      - name: Install Google Chrome
         uses: browser-actions/setup-chrome@v1
         with:
           chrome-version: stable
 
-      - name: Install dependencies
+      - name: Install dependencies for behave-webdriver (Selenium 3)
         run: |
           python -m pip install --upgrade pip
+          # Pin urllib3 to avoid "Timeout value connect was <object object>" bug
+          pip install "urllib3<2"
           pip install behave==1.2.6 behave-webdriver selenium==3.141.0
 
       - name: Run isitchristmas tests
@@ -47,9 +50,29 @@ jobs:
           python -m behave --format pretty --no-capture
         continue-on-error: false
 
-      - name: Upgrade to Selenium 4 for advanced tests
+  advanced-humblebundle-tests:
+    name: Advanced Humble Bundle Suite (Selenium 4)
+    runs-on: ubuntu-latest
+    needs: behave-test-suites # remove this line if you want them independent
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install Google Chrome
+        uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: stable
+
+      - name: Install dependencies for advanced tests (Selenium 4)
         run: |
-          pip install --upgrade selenium
+          python -m pip install --upgrade pip
+          pip install behave selenium
 
       - name: Run advanced-humblebundle tests
         working-directory: advanced-humblebundle
