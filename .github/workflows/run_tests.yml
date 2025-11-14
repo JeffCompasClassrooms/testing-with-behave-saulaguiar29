@@ -27,7 +27,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install behave behave-webdriver selenium
+          pip install behave==1.2.6 behave-webdriver selenium
 
       - name: Run isitchristmas tests
         working-directory: isitchristmas
