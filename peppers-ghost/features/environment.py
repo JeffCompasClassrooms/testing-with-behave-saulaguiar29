@@ -2,16 +2,16 @@ import behave_webdriver
 from behave_webdriver.steps import *
 
 def before_all(context):
-    # IMPORTANT: behave-webdriver requires desired_capabilities, not options=...
     desired_capabilities = {
         "browserName": "chrome",
-        "chromeOptions": {
+        "goog:chromeOptions": {
             "args": [
-                "--headless",
+                "--headless=new",    
                 "--no-sandbox",
                 "--disable-dev-shm-usage",
                 "--disable-gpu",
                 "--disable-extensions",
+                "--remote-debugging-port=9222",
                 "--window-size=1920,1080",
             ]
         }
@@ -22,5 +22,5 @@ def before_all(context):
     )
 
 def after_all(context):
-    if hasattr(context, "behave_driver") and context.behave_driver:
+    if hasattr(context, "behave_driver"):
         context.behave_driver.quit()
