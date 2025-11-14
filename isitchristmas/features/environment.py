@@ -2,7 +2,6 @@ import behave_webdriver
 from behave_webdriver.steps import *
 
 def before_all(context):
-    # IMPORTANT: behave-webdriver requires desired_capabilities, not options=...
     desired_capabilities = {
         "browserName": "chrome",
         "chromeOptions": {
