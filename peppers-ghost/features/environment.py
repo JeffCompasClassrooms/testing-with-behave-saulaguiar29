@@ -1,14 +1,10 @@
-# features/environment.py for:
-# - isitchristmas
-# - peppers-ghost
-# - basic-calculator
-
 import behave_webdriver
 from behave_webdriver.steps import *
 
 def before_all(context):
-    # Chrome options for GitHub Actions (headless, safe flags)
-    chrome_options = {
+    # IMPORTANT: behave-webdriver requires desired_capabilities, not options=...
+    desired_capabilities = {
+        "browserName": "chrome",
         "chromeOptions": {
             "args": [
                 "--headless",
@@ -21,10 +17,10 @@ def before_all(context):
         }
     }
 
-    # behave_webdriver uses Selenium 3 under the hood (we pin it in CI)
-    context.behave_driver = behave_webdriver.Chrome(options=chrome_options)
+    context.behave_driver = behave_webdriver.Chrome(
+        desired_capabilities=desired_capabilities
+    )
 
 def after_all(context):
-    # Be defensive in case driver failed to start
     if hasattr(context, "behave_driver") and context.behave_driver:
         context.behave_driver.quit()
